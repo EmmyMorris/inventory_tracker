@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_29_233438) do
+ActiveRecord::Schema.define(version: 2021_11_30_200734) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -27,4 +29,5 @@ ActiveRecord::Schema.define(version: 2021_11_29_233438) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "products", "users"
 end
