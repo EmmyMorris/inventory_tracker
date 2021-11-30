@@ -3,7 +3,8 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @user = User.find(current_user.id)
+    @products = @user.products.all
   end
 
   # GET /products/1 or /products/1.json
@@ -12,7 +13,8 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @user = User.find(current_user.id)
+    @product = @user.products.new
   end
 
   # GET /products/1/edit
@@ -21,8 +23,8 @@ class ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
-
+    @user = User.find(current_user.id)
+    @product = @user.products.new(product_params)
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: "Product was successfully created." }
@@ -49,17 +51,18 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1 or /products/1.json
   def destroy
+    require "pry"; binding.pry
+    @user = User.find(current_user.id)
+    @product = @user.products.find(params[:id])
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to products_url, notice: "Product was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to products_url, notice: "Product was successfully destroyed."
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-      @product = Product.find(params[:id])
+      @user = User.find(current_user.id)
+      @product = @user.products.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
