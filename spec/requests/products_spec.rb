@@ -13,17 +13,21 @@
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/products", type: :request do
-
+  before(:each) do
+    @user = User.create(email: "emmymorris@gmail.com", password: "emmy")
+  end
   # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {{
     name: "apples",
-    quantity: 10
+    quantity: 10,
+    user_id: @user.id
   }}
 
   let(:invalid_attributes) {{
     name: "",
-    quantity: "hi"
+    quantity: "hi",
+    user_id: 0
   }}
 
   describe "GET /index" do
@@ -89,7 +93,8 @@ RSpec.describe "/products", type: :request do
     context "with valid parameters" do
       let(:new_attributes) {{
           name: "oranges",
-          quantity: 15
+          quantity: 15,
+          user_id: @user.id
         }}
 
       it "updates the requested product" do
