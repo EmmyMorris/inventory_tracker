@@ -35,6 +35,7 @@ class Users::ProductsController < ApplicationController
 
   # PATCH/PUT /products/1 or /products/1.json
   def update
+    @user = current_user
     respond_to do |format|
       if @product.update(product_params) && @product.quantity < 1
         format.html { redirect_to @product, notice: "Product was successfully updated." }
