@@ -73,9 +73,17 @@ RSpec.describe "/users", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new User" do
+        @user = User.create(email: 'user@test.com', password: 'test_password')
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+        visit "/users/#{@user.id}/edit"
+        fill_in "Password", with: 'test_password'
+        fill_in "Password confirmation", with: 'bad_password'
+        click_on "Update User"
         expect {
           post users_url, params: { user: invalid_attributes }
         }.to change(User, :count).by(0)
+
+        expect(page).to have_content("Password confirmation doesn't match Password")
       end
     end
   end

@@ -100,11 +100,33 @@ RSpec.describe "/products", type: :request do
         expect(assigns(:product).attributes['name']).to match(new_attributes[:name])
       end
 
+      it "updates the requested product and sends email" do
+        @product = @user.products.create(name: "peaches", quantity: 10)
+        visit "/products/#{@product.id}/edit"
+        fill_in "Name", with: 'peaches'
+        fill_in "Quantity", with: 0
+        click_on "Update Product"
+        expect(page).to have_content("Product was successfully updated. Product is low, an email has been sent!")
+      end
+
       it "redirects to the product" do
         product = Product.create! valid_attributes
         patch product_url(product), params: { product: new_attributes }
         product.reload
         expect(response).to redirect_to(product_url(product))
+      end
+
+      it "does not update the product" do
+        @product = @user.products.create(name: "peaches", quantity: 10)
+        visit "/products/#{@product.id}/edit"
+        fill_in "Name", with: ''
+        fill_in "Quantity", with: 5
+        click_on "Update Product"
+        expect {
+          post users_url, params: { user: invalid_attributes }
+        }.to change(User, :count).by(0)
+
+        expect(page).to have_content("Name can't be blank")
       end
     end
   end
