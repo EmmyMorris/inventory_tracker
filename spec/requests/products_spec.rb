@@ -14,7 +14,8 @@
 
 RSpec.describe "/products", type: :request do
   before(:each) do
-    @user = User.create(email: "emmymorris@gmail.com", password: "emmy")
+    @user = User.create(email: 'user@test.com', password: 'test_password')
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
   # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.
