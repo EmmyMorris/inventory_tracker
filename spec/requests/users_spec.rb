@@ -77,11 +77,6 @@ RSpec.describe "/users", type: :request do
           post users_url, params: { user: invalid_attributes }
         }.to change(User, :count).by(0)
       end
-
-      xit "renders a successful response (i.e. to display the 'new' template)" do
-        post users_url, params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
     end
   end
 
@@ -104,14 +99,6 @@ RSpec.describe "/users", type: :request do
         patch user_url(user), params: { user: new_attributes }
         user.reload
         expect(response).to redirect_to(user_url(user))
-      end
-    end
-
-    context "with invalid parameters" do
-      xit "renders a successful response (i.e. to display the 'edit' template)" do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: invalid_attributes }
-        expect(response).to be_successful
       end
     end
   end

@@ -82,11 +82,6 @@ RSpec.describe "/products", type: :request do
           post products_url, params: { product: invalid_attributes }
         }.to change(Product, :count).by(0)
       end
-
-      xit "renders a successful response (i.e. to display the 'new' template)" do
-        post products_url, params: { product: invalid_attributes }
-        expect(response).to be_successful
-      end
     end
   end
 
@@ -110,14 +105,6 @@ RSpec.describe "/products", type: :request do
         patch product_url(product), params: { product: new_attributes }
         product.reload
         expect(response).to redirect_to(product_url(product))
-      end
-    end
-
-    context "with invalid parameters" do
-      xit "renders a successful response (i.e. to display the 'edit' template)" do
-        product = Product.create! valid_attributes
-        patch product_url(product), params: { product: invalid_attributes }
-        expect(response).to be_successful
       end
     end
   end
