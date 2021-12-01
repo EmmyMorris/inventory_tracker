@@ -19,7 +19,7 @@ Product Tracker is an application that allows a user to view products and their 
 5. Seed the database: `rails db:seed`
 
 ### Database Design
-![Product Tracker Schema](https://user-images.githubusercontent.com/77904287/142489077-b210b85a-cc73-4ad5-a321-f007a7a3a536.png)
+<img width="814" alt="Inventory Tracker DB Design" src="https://user-images.githubusercontent.com/77904287/144309507-8adfd925-fa46-4c6d-9353-17b1520ce43a.png">
 
 ## Important Gems
 Testing
