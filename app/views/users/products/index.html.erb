@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @user.products.each do |product| %>
+    <% current_user.products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.quantity %></td>
@@ -25,5 +25,5 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path(:user_id => @user.id) %><br>
+<%= link_to 'New Product', new_product_path(:user_id => current_user.id) %><br>
 <%= link_to 'Back', root_path %>
