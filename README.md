@@ -2,7 +2,7 @@
 
 ### About
 
-Product Tracker is an application that allows a user to view products and their quantities. Users have the ability to increase and decrease the quantity of the products and will receive an email when the product is sold out.
+Product Tracker is an application that allows a user to create, view, edit, and delete their products. When a user updates one of their products to have a quantity of zero an email is sent to the user!
 
 
 1. Start the server- `rails s`
@@ -16,7 +16,6 @@ Product Tracker is an application that allows a user to view products and their 
 2. Install gem packages: `bundle install`
 3. Setup the database: `rails db:create`
 4. Run migrations: ` rails db:migrate`
-5. Seed the database: `rails db:seed`
 
 ### Database Design
 <img width="814" alt="Inventory Tracker DB Design" src="https://user-images.githubusercontent.com/77904287/144309507-8adfd925-fa46-4c6d-9353-17b1520ce43a.png">
@@ -33,7 +32,7 @@ Testing
 * Simplecov was used to track total test coverage.
 * To run our test suite, RSpec, enter `$ bundle exec rspec` in the terminal.
 * To see a coverage report enter `$ open coverage/index.html`
-* SimpleCov test coverage is at 100.00%:
+* SimpleCov test coverage is at 99.22%!
 
 
 
@@ -41,7 +40,7 @@ Testing
 
 - Ruby 2.7.2
 
-- Rails 5.2.5
+- Rails 6.0.4
 
 ## Authors
 
