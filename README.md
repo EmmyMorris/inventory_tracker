@@ -32,7 +32,8 @@ Testing
 * Simplecov was used to track total test coverage.
 * To run our test suite, RSpec, enter `$ bundle exec rspec` in the terminal.
 * To see a coverage report enter `$ open coverage/index.html`
-* SimpleCov test coverage is at 99.22%!
+* SimpleCov test coverage is at 100%! :
+![Inventory Tracker Simplecov Test Coverage](https://user-images.githubusercontent.com/77904287/144498713-fdafd0a0-8249-414c-a6ee-cbe517737ef4.png)
 
 
 
